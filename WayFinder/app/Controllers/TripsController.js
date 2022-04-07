@@ -1,4 +1,5 @@
-import { ProxyState } from "../AppState";
+import { ProxyState } from "../AppState.js";
+import { Trip } from "../Models/Trip.js"
 
 
 function _drawTrips() {
@@ -7,7 +8,7 @@ function _drawTrips() {
     trips.forEach(trip => tripsTemplate += trip.TripTemplate)
     document.getElementById("trips").innerHTML = /*html*/ `
     
-    
+   ${tripsTemplate}
     
     
     
@@ -16,6 +17,12 @@ function _drawTrips() {
 }
 export class TripsController {
     constructor(){
-        ProxyState.on("trips", _drawTrips())
+        ProxyState.on("trips", _drawTrips);
+        _drawTrips()
+    }
+    drawTrips(){
+        _drawTrips()
     }
 }
+
+
